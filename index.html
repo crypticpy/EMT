@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerging Tech Board Update | City of Austin</title>
+    <meta name="description" content="Q1 2026 Quarterly Briefing for the City of Austin Emerging Technology Board">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Geist Font (COA Template Standard) -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- City of Austin Favicon -->
+    <link rel="icon" href="https://www.austintexas.gov/themes/custom/austin/favicon.ico">
+
+    <!-- Tailwind CDN for rapid prototyping -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#44499C',
+                        'brand-blue-dark': '#22254E',
+                        'brand-blue-light': '#dcf2fd',
+                        'brand-green': '#009F4D',
+                        'brand-green-dark': '#005027',
+                        'brand-green-light': '#dff0e3',
+                        'brand-faded': '#f7f6f5',
+                        'extended-red': '#F83125',
+                        'extended-orange': '#FF8F00',
+                        'extended-yellow': '#FFC600',
+                        'extended-cyan': '#009CDE',
+                        'extended-purple': '#9F3CC9',
+                    },
+                    fontFamily: {
+                        'geist': ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'scale-in': 'scaleIn 0.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        /* Glass morphism header - matches COA template */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(68, 73, 156, 0.1);
+        }
+
+        .dark .glass-header {
+            background: rgba(34, 37, 78, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Card hover effect from COA template */
+        .card-hover {
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px -12px rgba(68, 73, 156, 0.25);
+            border-left-color: #44499C;
+        }
+
+        /* Priority card accent */
+        .priority-accent {
+            position: relative;
+        }
+
+        .priority-accent::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #44499C 0%, #009F4D 100%);
+            border-radius: 4px 0 0 4px;
+        }
+
+        /* Animated gradient background */
+        .hero-gradient {
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(220, 242, 253, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(223, 240, 227, 0.6) 0%, transparent 50%),
+                linear-gradient(180deg, #ffffff 0%, #f7f6f5 100%);
+        }
+
+        .dark .hero-gradient {
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(68, 73, 156, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(0, 159, 77, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, #22254E 0%, #1a1d3a 100%);
+        }
+
+        /* Topic category badges */
+        .badge-ai { background: #dcf2fd; color: #44499C; }
+        .badge-transport { background: #dff0e3; color: #005027; }
+        .badge-safety { background: #FFF4E6; color: #8F5201; }
+        .badge-vision { background: #FEE2E2; color: #991B1B; }
+        .badge-utility { background: #E0F2FE; color: #0369A1; }
+        .badge-planning { background: #F3E8FF; color: #7C3AED; }
+        .badge-privacy { background: #ECFDF5; color: #047857; }
+        .badge-security { background: #FEF3C7; color: #92400E; }
+
+        /* Smooth scroll offset for fixed header */
+        html {
+            scroll-padding-top: 80px;
+        }
+
+        /* Focus states for accessibility */
+        .focus-brand:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #44499C;
+            ring-offset: 2px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f7f6f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #44499C;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22254E;
+        }
+
+        /* Staggered animation delays */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        /* Print styles */
+        @media print {
+            .glass-header, .no-print { display: none !important; }
+            .hero-gradient { background: white !important; }
+            .card-hover { box-shadow: none !important; border: 1px solid #e5e5e5 !important; }
+        }
+    </style>
+</head>
+
+<body class="font-geist antialiased bg-brand-faded dark:bg-brand-blue-dark text-gray-900 dark:text-gray-100">
+    <!-- Skip Link -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-blue focus:text-white focus:rounded-lg">
+        Skip to main content
+    </a>
+
+    <!-- Header - Glass Morphism Style from COA Template -->
+    <header class="glass-header fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo & Branding -->
+                <a href="#" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+                    <img
+                        src="https://raw.githubusercontent.com/crypticpy/COA_AI_Template/main/branding/COA-Logo-Horizontal-Official-RGB.png"
+                        alt="City of Austin"
+                        class="h-10 w-auto"
+                    >
+                    <div class="hidden sm:flex flex-col border-l border-gray-300 dark:border-gray-600 pl-3">
+                        <span class="text-sm font-semibold text-brand-blue dark:text-brand-blue-light leading-tight">Emerging Technology Board</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 leading-tight">Quarterly Briefing</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-1" aria-label="Main navigation">
+                    <a href="#priorities" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-gray-600 hover:text-brand-blue hover:bg-brand-blue/10 dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/10 transition-colors">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Priorities
+                    </a>
+                    <a href="#topics" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-gray-600 hover:text-brand-blue hover:bg-brand-blue/10 dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/10 transition-colors">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        All Topics
+                    </a>
+                    <a href="#resources" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-gray-600 hover:text-brand-blue hover:bg-brand-blue/10 dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/10 transition-colors">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                        Resources
+                    </a>
+
+                    <!-- Theme Toggle -->
+                    <button
+                        id="theme-toggle"
+                        class="ml-2 p-2 rounded-lg text-gray-500 hover:text-brand-blue hover:bg-brand-blue/10 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/10 transition-colors"
+                        aria-label="Toggle dark mode"
+                    >
+                        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button
+                    id="mobile-menu-btn"
+                    class="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-600 hover:text-brand-blue hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10 transition-colors"
+                    aria-expanded="false"
+                    aria-label="Open menu"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-brand-blue-dark/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50">
+            <div class="px-4 py-3 space-y-1">
+                <a href="#priorities" class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium rounded-lg text-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue dark:text-gray-200 dark:hover:bg-white/10 transition-colors">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Top Priorities
+                </a>
+                <a href="#topics" class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium rounded-lg text-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue dark:text-gray-200 dark:hover:bg-white/10 transition-colors">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    All Topics
+                </a>
+                <a href="#resources" class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium rounded-lg text-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue dark:text-gray-200 dark:hover:bg-white/10 transition-colors">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                    Resources
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        <!-- Hero Section -->
+        <section class="hero-gradient pt-24 pb-16 lg:pt-32 lg:pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <!-- Quarter Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue dark:text-brand-blue-light text-sm font-medium mb-6 animate-fade-in">
+                        <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                        Q1 2026 Quarterly Briefing
+                    </div>
+
+                    <!-- Main Title -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-blue-dark dark:text-white mb-6 animate-slide-up">
+                        Emerging Technology
+                        <span class="block text-brand-blue dark:text-brand-blue-light">Board Update</span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto animate-slide-up stagger-1">
+                        Curated insights on AI agents, autonomous mobility, drones, smart infrastructure, and emerging technologies shaping Austin's future.
+                    </p>
+
+                    <!-- Meeting Info -->
+                    <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 dark:text-gray-400 mb-10 animate-fade-in stagger-2">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <span class="font-medium">January 30, 2026</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span class="font-medium">Austin City Hall</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap justify-center gap-4 animate-slide-up stagger-3">
+                        <a href="#priorities" class="inline-flex items-center px-6 py-3 rounded-lg bg-brand-blue hover:bg-brand-blue-dark text-white font-medium shadow-lg shadow-brand-blue/25 hover:shadow-brand-blue/40 transition-all">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            View Top 3 Priorities
+                        </a>
+                        <a href="#topics" class="inline-flex items-center px-6 py-3 rounded-lg bg-white dark:bg-brand-blue-dark border border-gray-200 dark:border-gray-600 hover:border-brand-blue dark:hover:border-brand-blue-light text-gray-700 dark:text-gray-200 font-medium transition-all">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                            Browse All Topics
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top 3 Priorities Section -->
+        <section id="priorities" class="py-16 lg:py-24 bg-white dark:bg-brand-blue-dark/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center mb-12">
+                    <span class="inline-block px-3 py-1 rounded-full bg-extended-red/10 text-extended-red text-xs font-semibold uppercase tracking-wider mb-4">
+                        Must Read
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-brand-blue-dark dark:text-white mb-4">
+                        Top 3 Priorities This Quarter
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        If you review nothing else, focus on these three areas with the highest near-term impact for Austin.
+                    </p>
+                </div>
+
+                <!-- Priority Cards -->
+                <div class="space-y-6">
+                    <!-- Priority 1: Agentic AI -->
+                    <article class="card-hover priority-accent bg-brand-faded dark:bg-brand-blue-dark rounded-xl p-6 lg:p-8">
+                        <div class="flex flex-col lg:flex-row lg:items-start gap-6">
+                            <div class="flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white text-2xl font-bold shadow-lg">
+                                1
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-wrap items-center gap-3 mb-3">
+                                    <span class="badge-ai px-3 py-1 rounded-full text-xs font-semibold">AI & Automation</span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">Highest leverage opportunity</span>
+                                </div>
+                                <h3 class="text-xl lg:text-2xl font-bold text-brand-blue-dark dark:text-white mb-3">
+                                    Agentic AI for Municipal Workflows
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    AI systems that don't just chat — they execute tasks. Major platforms are moving from assistants to task-executing agents embedded in workflow systems (e.g., ServiceNow deepening Claude integration).
+                                </p>
+                                <div class="bg-white dark:bg-brand-blue-dark/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700 mb-4">
+                                    <div class="flex items-start gap-3">
+                                        <svg class="w-5 h-5 text-brand-green flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        <p class="text-sm">
+                                            <span class="font-semibold text-brand-blue-dark dark:text-white">Key Stat:</span>
+                                            <span class="text-gray-600 dark:text-gray-300"> Gartner forecasts 40% of enterprise apps will feature task-specific AI agents by 2026 (from &lt;5% in 2025).</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <a href="#topic-ai" class="inline-flex items-center text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white font-medium transition-colors">
+                                    Read full briefing
+                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Priority 2: DFR/Drones -->
+                    <article class="card-hover priority-accent bg-brand-faded dark:bg-brand-blue-dark rounded-xl p-6 lg:p-8">
+                        <div class="flex flex-col lg:flex-row lg:items-start gap-6">
+                            <div class="flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white text-2xl font-bold shadow-lg">
+                                2
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-wrap items-center gap-3 mb-3">
+                                    <span class="badge-safety px-3 py-1 rounded-full text-xs font-semibold">Public Safety</span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">Fast-moving regulatory shifts</span>
+                                </div>
+                                <h3 class="text-xl lg:text-2xl font-bold text-brand-blue-dark dark:text-white mb-3">
+                                    Drone-as-First-Responder (DFR) + BVLOS
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    FAA is actively pushing BVLOS (beyond visual line of sight) normalization. DFR programs have scaled quickly with widespread adoption and very fast scene arrival times.
+                                </p>
+                                <div class="bg-white dark:bg-brand-blue-dark/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700 mb-4">
+                                    <div class="flex items-start gap-3">
+                                        <svg class="w-5 h-5 text-extended-orange flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        <p class="text-sm">
+                                            <span class="font-semibold text-brand-blue-dark dark:text-white">Texas Context:</span>
+                                            <span class="text-gray-600 dark:text-gray-300"> Prosper launched DFR in 2025; Laredo expanded its first-responder drone program. Austin should plan now.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <a href="#topic-drones" class="inline-flex items-center text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white font-medium transition-colors">
+                                    Read full briefing
+                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Priority 3: AVs -->
+                    <article class="card-hover priority-accent bg-brand-faded dark:bg-brand-blue-dark rounded-xl p-6 lg:p-8">
+                        <div class="flex flex-col lg:flex-row lg:items-start gap-6">
+                            <div class="flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white text-2xl font-bold shadow-lg">
+                                3
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex flex-wrap items-center gap-3 mb-3">
+                                    <span class="badge-transport px-3 py-1 rounded-full text-xs font-semibold">Transportation</span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">Already live in Austin</span>
+                                </div>
+                                <h3 class="text-xl lg:text-2xl font-bold text-brand-blue-dark dark:text-white mb-3">
+                                    Autonomous Vehicle Integration
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    This isn't future planning — it's already live. Uber publicly launched "Waymo on Uber" in Austin on March 4, 2025. City integration is the next bottleneck.
+                                </p>
+                                <div class="bg-white dark:bg-brand-blue-dark/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700 mb-4">
+                                    <div class="flex items-start gap-3">
+                                        <svg class="w-5 h-5 text-extended-red flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                        <p class="text-sm">
+                                            <span class="font-semibold text-brand-blue-dark dark:text-white">Action Needed:</span>
+                                            <span class="text-gray-600 dark:text-gray-300"> Create an AV operations playbook covering curb management, data sharing, emergency procedures, and incident reporting.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <a href="#topic-av" class="inline-flex items-center text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white font-medium transition-colors">
+                                    Read full briefing
+                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Topics Section -->
+        <section id="topics" class="py-16 lg:py-24 bg-brand-faded dark:bg-brand-blue-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center mb-12">
+                    <span class="inline-block px-3 py-1 rounded-full bg-brand-blue/10 text-brand-blue dark:text-brand-blue-light text-xs font-semibold uppercase tracking-wider mb-4">
+                        Full Briefing
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-brand-blue-dark dark:text-white mb-4">
+                        All Technology Topics
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        Comprehensive overview of emerging technologies relevant to city operations.
+                    </p>
+                </div>
+
+                <!-- Topic Grid -->
+                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+
+                    <!-- Topic 1: Agentic AI -->
+                    <article id="topic-ai" class="card-hover bg-white dark:bg-brand-blue-dark/80 rounded-xl p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-start justify-between mb-4">
+                            <span class="badge-ai px-3 py-1 rounded-full text-xs font-semibold">AI & Automation</span>
+                            <span class="text-3xl">🤖</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue-dark dark:text-white mb-4">Agentic AI for Municipal Workflows</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">What Changed Recently</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Major enterprise platforms are moving from "assistants" to task-executing agents embedded in workflow systems. ServiceNow is deepening Claude integration to power ServiceNow agents and "Build Agent" capabilities.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Why the Board Should Care</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Gartner forecasts a rapid shift — 40% of enterprise apps featuring task-specific AI agents by 2026 (from &lt;5% in 2025). This implies near-term vendor offerings and pressure to adopt.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Austin Pilot Angle</h4>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2"><strong>"Bounded agents"</strong> that can take actions only through approved tools/APIs:</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 ml-2">
+                                    <li>Draft-and-route permits</li>
+                                    <li>Reconcile invoice exceptions</li>
+                                    <li>Pre-triage 311 calls to correct department queue</li>
+                                    <li>Generate inspection checklists</li>
+                                </ul>
+                                <p class="text-gray-600 dark:text-gray-300 mt-2">All with human approval + audit logs.</p>
+                            </div>
+
+                            <div class="bg-extended-red/5 dark:bg-extended-red/10 border-l-4 border-extended-red rounded-r-lg p-4">
+                                <h4 class="font-semibold text-extended-red text-xs uppercase tracking-wider mb-1">Risk Focus</h4>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm">Transparency, indeterminism, and permissioning boundaries must be addressed.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Topic 2: Autonomous Mobility -->
+                    <article id="topic-av" class="card-hover bg-white dark:bg-brand-blue-dark/80 rounded-xl p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-start justify-between mb-4">
+                            <span class="badge-transport px-3 py-1 rounded-full text-xs font-semibold">Transportation</span>
+                            <span class="text-3xl">🚗</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue-dark dark:text-white mb-4">Autonomous Mobility Integration</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">What's Real</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Uber publicly launched "Waymo on Uber" in Austin on <strong>March 4, 2025</strong>. Riders can now be matched to Waymo AVs directly in the Uber app.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Why the Board Should Care</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Robotaxis are trending toward practical competitiveness on price and wait time in mature markets. This accelerates adoption and increases city touchpoints: curb management, incidents, accessibility, equity, and enforcement.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Austin Pilot Angle</h4>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">Create an <strong>AV operations playbook</strong>:</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 ml-2">
+                                    <li>Curb management zones</li>
+                                    <li>Data sharing agreements</li>
+                                    <li>Emergency interaction procedures</li>
+                                    <li>Incident reporting protocols</li>
+                                </ul>
+                                <p class="text-gray-600 dark:text-gray-300 mt-2">Run a limited "smart curb" pilot in downtown and key corridors.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Topic 3: DFR/Drones -->
+                    <article id="topic-drones" class="card-hover bg-white dark:bg-brand-blue-dark/80 rounded-xl p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-start justify-between mb-4">
+                            <span class="badge-safety px-3 py-1 rounded-full text-xs font-semibold">Public Safety</span>
+                            <span class="text-3xl">🚁</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue-dark dark:text-white mb-4">Drone-as-First-Responder (DFR) + BVLOS</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">What Changed</h4>
+                                <p class="text-gray-600 dark:text-gray-300">FAA is actively pushing BVLOS (beyond visual line of sight) normalization via proposed rulemaking and programs like BEYOND, aiming to move beyond one-off waivers.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Why the Board Should Care</h4>
+                                <p class="text-gray-600 dark:text-gray-300">DFR programs have scaled quickly with widespread adoption and very fast scene arrival times. Real privacy debates require cities to govern explicitly.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Austin Pilot Angle</h4>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">A narrow, <strong>policy-forward DFR pilot</strong> for:</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 ml-2">
+                                    <li>Missing person search</li>
+                                    <li>Fire situational awareness</li>
+                                    <li>Flood reconnaissance</li>
+                                </ul>
+                                <p class="text-gray-600 dark:text-gray-300 mt-2">With explicit governance: flight logging, retention limits, camera-off-in-transit defaults, and public transparency.</p>
+                            </div>
+
+                            <div class="bg-brand-blue-light/50 dark:bg-brand-blue/20 border-l-4 border-brand-blue rounded-r-lg p-4">
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light text-xs uppercase tracking-wider mb-1">Texas Context</h4>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm">Prosper launched DFR (2025); Laredo expanded first-responder drone program. AP reports U.S. proposed streamlining long-distance/BVLOS operations — an external accelerant to plan for now.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Topic 4: Edge-AI Traffic Safety -->
+                    <article id="topic-traffic" class="card-hover bg-white dark:bg-brand-blue-dark/80 rounded-xl p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-start justify-between mb-4">
+                            <span class="badge-vision px-3 py-1 rounded-full text-xs font-semibold">Vision Zero</span>
+                            <span class="text-3xl">🚦</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue-dark dark:text-white mb-4">Edge-AI Traffic Safety Stack</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">What's Real in Austin</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Austin's Smart Mobility Office is piloting <strong>NTT's Smart City Platform</strong> for real-time detection and notification — wrong-way driving incidents, vehicle counts, and traffic volumes.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Why the Board Should Care</h4>
+                                <p class="text-gray-600 dark:text-gray-300">This is "AI where it matters": situational awareness + faster response on known high-severity events (wrong-way driving, red-light running, pedestrian conflicts) — without being a resident-facing chatbot.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Austin Pilot Angle</h4>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 ml-2">
+                                    <li>Scale to Highest Injury Network intersections</li>
+                                    <li>Evaluate "closed-loop" workflows: detection → dispatch/notification → after-action analytics</li>
+                                    <li>Connected pedestrian crosswalk pilot: vehicle alerts when button is pressed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Topic 5: Water Utility -->
+                    <article id="topic-water" class="card-hover bg-white dark:bg-brand-blue-dark/80 rounded-xl p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-start justify-between mb-4">
+                            <span class="badge-utility px-3 py-1 rounded-full text-xs font-semibold">Utilities</span>
+                            <span class="text-3xl">💧</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue-dark dark:text-white mb-4">Predictive Water Maintenance</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">What's Real</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Utilities are piloting acoustic "loggers" placed in fire hydrants that "listen" for leaks and alert crews. Example: a Colorado utility pilot documented by GovTech.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Why the Board Should Care</h4>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2"><strong>High-ROI, measurable outcomes:</strong></p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 ml-2">
+                                    <li>Reduced non-revenue water</li>
+                                    <li>Fewer catastrophic main breaks</li>
+                                    <li>Optimized crew dispatch</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Austin Pilot Angle</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Target a bounded pressure zone with known break history. Integrate leak alerts directly into the work order system. Measure: gallons saved, avoided breaks, response time.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Topic 6: Digital Twins -->
+                    <article id="topic-twins" class="card-hover bg-white dark:bg-brand-blue-dark/80 rounded-xl p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-start justify-between mb-4">
+                            <span class="badge-planning px-3 py-1 rounded-full text-xs font-semibold">Planning & Resilience</span>
+                            <span class="text-3xl">🏙️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue-dark dark:text-white mb-4">Regional Digital Twins</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">What's Emerging</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Regional coalitions are pushing digital twins to address traffic, development, climate, and cross-jurisdiction coordination. Example: Phoenix region effort.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Why the Board Should Care</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Digital twins become the <strong>"integration layer"</strong> for sensors, asset condition, permitting, and scenario planning (flood/heat/evacuation). They reduce friction between departments.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Austin Pilot Angle</h4>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">Start with a <strong>single district</strong> (downtown, major corridor, or flood-prone watershed) and tight use-cases:</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 ml-2">
+                                    <li>Capital planning conflict detection</li>
+                                    <li>Public-facing 3D visualization</li>
+                                    <li>Emergency routing scenarios</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Topic 7: Privacy-Enhancing Crypto -->
+                    <article id="topic-pec" class="card-hover bg-white dark:bg-brand-blue-dark/80 rounded-xl p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-start justify-between mb-4">
+                            <span class="badge-privacy px-3 py-1 rounded-full text-xs font-semibold">Data & Privacy</span>
+                            <span class="text-3xl">🔐</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue-dark dark:text-white mb-4">Privacy-Enhancing Cryptography (PEC)</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">What It Is</h4>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">NIST's PEC work highlights techniques that allow analysis/linkage over sensitive datasets while reducing exposure of personal data:</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 ml-2">
+                                    <li>Secure multi-party computation</li>
+                                    <li>Homomorphic encryption</li>
+                                    <li>Zero-knowledge proofs</li>
+                                    <li>Private set intersection</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Why the Board Should Care</h4>
+                                <p class="text-gray-600 dark:text-gray-300"><strong>"Force multiplier"</strong> for evidence-based policy in health, housing, and homelessness while improving privacy posture. Reduces the need for broad data pooling.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Austin Pilot Angle</h4>
+                                <p class="text-gray-600 dark:text-gray-300">A small PEC proof-of-concept for a single join/use-case (e.g., "program overlap counts" or "eligibility signals") with strict data minimization and independent privacy review.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Topic 8: Post-Quantum Crypto -->
+                    <article id="topic-pqc" class="card-hover bg-white dark:bg-brand-blue-dark/80 rounded-xl p-6 lg:p-8 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-start justify-between mb-4">
+                            <span class="badge-security px-3 py-1 rounded-full text-xs font-semibold">Cybersecurity</span>
+                            <span class="text-3xl">🛡️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue-dark dark:text-white mb-4">Post-Quantum Cryptography (PQC)</h3>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">What's Real</h4>
+                                <p class="text-gray-600 dark:text-gray-300">NIST finalized three PQC standards in 2024 (FIPS 203/204/205) and continues the standardization program. <strong>This is no longer speculative research.</strong></p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Why the Board Should Care</h4>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">Long-lived municipal systems have long upgrade cycles:</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 ml-2">
+                                    <li>PKI and VPN infrastructure</li>
+                                    <li>Identity systems</li>
+                                    <li>Critical infrastructure communications</li>
+                                    <li>Archival records</li>
+                                </ul>
+                                <p class="text-gray-600 dark:text-gray-300 mt-2"><strong>"Harvest now, decrypt later"</strong> is the strategic risk.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-blue dark:text-brand-blue-light uppercase text-xs tracking-wider mb-2">Action Signal</h4>
+                                <p class="text-gray-600 dark:text-gray-300">CISA published guidance on product categories where PQC-standard implementations are available. Use this to drive procurement requirements and vendor roadmaps.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="py-16 lg:py-24 bg-white dark:bg-brand-blue-dark/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center mb-12">
+                    <span class="inline-block px-3 py-1 rounded-full bg-brand-green/10 text-brand-green dark:text-brand-green-light text-xs font-semibold uppercase tracking-wider mb-4">
+                        Learn More
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-brand-blue-dark dark:text-white mb-4">
+                        Additional Resources
+                    </h2>
+                </div>
+
+                <!-- Resources Grid -->
+                <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- External Links -->
+                    <div class="bg-brand-faded dark:bg-brand-blue-dark rounded-xl p-6 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="p-2 rounded-lg bg-brand-blue/10">
+                                <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-brand-blue-dark dark:text-white">Key External Links</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.nist.gov/pec" target="_blank" rel="noopener" class="text-sm text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white hover:underline">NIST Privacy-Enhancing Cryptography</a></li>
+                            <li><a href="https://www.cisa.gov/quantum" target="_blank" rel="noopener" class="text-sm text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white hover:underline">CISA Post-Quantum Guidance</a></li>
+                            <li><a href="https://www.faa.gov/uas/advanced_operations/beyond_visual_line_of_sight" target="_blank" rel="noopener" class="text-sm text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white hover:underline">FAA BVLOS Information</a></li>
+                            <li><a href="https://www.gartner.com" target="_blank" rel="noopener" class="text-sm text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white hover:underline">Gartner Research</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Austin-Specific -->
+                    <div class="bg-brand-faded dark:bg-brand-blue-dark rounded-xl p-6 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="p-2 rounded-lg bg-brand-green/10">
+                                <svg class="w-5 h-5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-brand-blue-dark dark:text-white">Austin-Specific</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.austintexas.gov/department/smart-mobility" target="_blank" rel="noopener" class="text-sm text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white hover:underline">Austin Smart Mobility Office</a></li>
+                            <li><a href="https://www.austintexas.gov/visionzero" target="_blank" rel="noopener" class="text-sm text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white hover:underline">Austin Vision Zero</a></li>
+                            <li><a href="https://www.austintexas.gov/department/austin-water" target="_blank" rel="noopener" class="text-sm text-brand-blue hover:text-brand-blue-dark dark:text-brand-blue-light dark:hover:text-white hover:underline">Austin Water</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Meeting Information -->
+                    <div class="bg-brand-faded dark:bg-brand-blue-dark rounded-xl p-6 border border-gray-100 dark:border-gray-700">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="p-2 rounded-lg bg-extended-purple/10">
+                                <svg class="w-5 h-5 text-extended-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-brand-blue-dark dark:text-white">Meeting Information</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                            For questions about this briefing or to request deeper dives on specific topics, contact the Emerging Technology Board staff.
+                        </p>
+                        <p class="text-sm font-medium text-brand-green dark:text-brand-green-light">
+                            Next quarterly meeting: April 2026
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-blue-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-4">
+                    <img
+                        src="https://raw.githubusercontent.com/crypticpy/COA_AI_Template/main/branding/COA-Logo-Horizontal-Official-RGB.png"
+                        alt="City of Austin"
+                        class="h-12 w-auto brightness-0 invert"
+                    >
+                    <div class="border-l border-white/20 pl-4">
+                        <p class="font-semibold">Emerging Technology Board</p>
+                        <p class="text-sm text-white/60">City of Austin</p>
+                    </div>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-white/60 max-w-md">
+                        This briefing is prepared for board members to support informed discussion. For the latest updates, consult official City of Austin channels.
+                    </p>
+                    <p class="text-xs text-white/40 mt-2">© 2026 City of Austin. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Smooth scroll with offset for fixed header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll animation to elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
